@@ -33,7 +33,12 @@
 </template>
 
 <script>
+import PlusIcon from './Icons/PlusIcon'
+
 export default {
+  components: {
+    PlusIcon
+  },
   props: {
     detailsList: {
       type: Array,

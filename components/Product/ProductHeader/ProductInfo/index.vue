@@ -1,5 +1,5 @@
 <template>
-  <div class="productInfoWrapper px-20">
+  <div class="productInfoWrapper flex flex-col justify-end px-20">
     <div class="productCommonSummary pb-4">
       <nav class="Breadcrumbs mb-6 ml-0.5">
         <ul class="flex text-sm">
@@ -11,10 +11,9 @@
           </li>
         </ul>
       </nav>
-      <h1 class="text-3xl text-black mb-3.7">In Two Minds Facial Cleanser</h1>
+      <h1 class="text-3xl text-black mb-3.7">{{ title }}</h1>
       <p class="productDescription text-sm">
-        A gentle gel-based formulation that cleanses thoroughly without drying
-        the skin or stripping its natural oils.
+        {{ description }}
       </p>
     </div>
 
@@ -25,7 +24,7 @@
     <div>
       <button class="border px-5 py-4 bg-dark text-white w-full" type="submit">
         <div>
-          <span class="Btn-label text-sm"> Add to your cart — £23.00</span>
+          <span class="Btn-label text-sm"> Add to your cart — £{{selectedSku.price}}</span>
           <span class="Btn-label text-sm">Added to your cart</span>
           <span class="LoadingIndicator LoadingIndicator--light">
             <span class="LoadingIndicator-dot"></span>
@@ -39,28 +38,18 @@
 </template>
 
 <script>
-import ProductDetails from '../../common/ProductDetails'
+import ProductDetails from '../../../common/ProductDetails'
 
 export default {
   components: {
     ProductDetails,
   },
-  data() {
-    return {
-      detailsList: [
-        { title: 'Suited To', description: 'Combination skin', button: false },
-        {
-          title: 'Skin feel',
-          description: 'Purified, soft, refreshed',
-          button: false,
-        },
-        {
-          title: 'Key ingredients',
-          description: 'Witch Hazel, Salicylic Acid, Sage Leaf',
-          button: true,
-        },
-      ],
-    }
+  props: {
+    title: String,
+    description: String,
+    selectedSku: Object,
+    products: Array,
+    detailsList: Array,
   },
   methods: {
     openSidePanel() {

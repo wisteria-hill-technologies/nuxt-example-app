@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import ProductDetails from '../common/ProductDetails'
+import ProductDetails from '../../common/ProductDetails'
 
 export default {
   components: {

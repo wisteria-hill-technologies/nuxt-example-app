@@ -44,17 +44,32 @@
         </div>
       </button>
     </div>
-    <ProductHeader @openSidePanel="overlayVisible = !overlayVisible" />
+    <ProductHeader
+      @openSidePanel="overlayVisible = !overlayVisible"
+    />
     <SecondaryMessageSection />
     <ProductContentSection />
     <ProductCarouselSection />
   </div>
 </template>
 
-<script lang="ts">
+<script>
+import ProductHeader from '../components/Product/ProductHeader'
+import SecondaryMessageSection from '../components/Product/SecondaryMessageSection'
+import ProductContentSection from '../components/Product/ProductContentSection'
+import ProductCarouselSection from '../components/Product/ProductCarouselSection'
+
 export default {
+  components: {
+    ProductHeader,
+    SecondaryMessageSection,
+    ProductContentSection,
+    ProductCarouselSection,
+  },
   data() {
-    return { overlayVisible: true }
+    return {
+      overlayVisible: false,
+    }
   },
 }
 </script>

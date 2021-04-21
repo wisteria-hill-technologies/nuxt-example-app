@@ -14,6 +14,7 @@ module.exports = {
         dark: '#333',
         theme: '#fffef2',
         themeMedium: '#f6f5e8',
+        themeDark: '#252525',
       },
       spacing: {
         3.7: '0.9375rem',

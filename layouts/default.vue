@@ -1,12 +1,20 @@
 <template>
-  <div class="Omorfi bg-theme">
+  <div
+    class="Omorfi bg-theme"
+  >
     <AppHeader />
     <Nuxt />
   </div>
 </template>
 
-<script lang="ts">
-export default {}
+<script>
+import AppHeader from './AppHeader'
+
+export default {
+  components: {
+    AppHeader,
+  },
+}
 </script>
 
 <style>
