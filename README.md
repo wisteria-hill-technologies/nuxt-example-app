@@ -3,15 +3,13 @@
 ### Simplified Re-creation of Aesop Ecommerce Site Product Details Page
 
 #### Original page
-```
-https://www.aesop.com/uk/p/skin/cleanse/in-two-
-minds-facial-cleanser/
-```
+https://www.aesop.com/uk/p/skin/cleanse/in-two-minds-facial-cleanser/
+
 ### Re-creation of the page - Results
 Deployed to Heroku
-```
+
 https://nuxt-noby-app-001.herokuapp.com/
-```
+
 ### Tech Stack Used
 - nuxt.js
 - vue.js
