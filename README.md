@@ -47,3 +47,6 @@ notes:
 - No animation or styling libraries were used except for Tailwind
 - No footer or hamburger icon was added due to time constraints.
 - Some animations were added as examples.
+
+### Update
+Bug Fix: Mobile View had overflowing issue.  It is now fixed and UI is improved.
