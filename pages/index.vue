@@ -74,15 +74,26 @@ export default {
   data() {
     return {
       overlayVisible: false,
+      productDetails: null,
     }
   },
-  computed: {
-    productDetails() {
-      return this.$store.getters.getProductDetails
-    },
+  //  // Example of data fetching after page load.
+  // computed: {
+  //   productDetails() {
+  //     return this.$store.getters.getProductDetails
+  //   },
+  // },
+  created() {
+    // this.$store.dispatch('getProductDetailsAsync', 'abc100ml') // this is how to get data after page load if prefered.
+    this.productDetails = this.$store.getters.getProductDetails
   },
-  mounted() {
-    this.$store.dispatch('getProductDetailsAsync', 'abc100ml')
+  async asyncData({ store }) {
+    // SSR
+    const payload = 'abc100ml'
+    const headers = { Accept: 'application/json' }
+    const results = await fetch(`https://nuxt-noby-app-001.herokuapp.com/api/productDetails?=${payload}`, { headers })
+    const data = await results.json()
+    store.state.productDetails = data
   },
   updated() {
     this.productDetails = this.$store.getters.getProductDetails

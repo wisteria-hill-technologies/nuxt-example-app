@@ -7,4 +7,8 @@ app.use(bodyParser.json())
 app.get('/productDetails', (req, res) => {
   res.status(200).json(productDetails)
 })
+app.get('/navlinks', (req, res) => {
+  const navlinks = ['Shop', 'Read', 'Stories', 'Search']
+  res.status(200).json({ navlinks })
+})
 module.exports = app

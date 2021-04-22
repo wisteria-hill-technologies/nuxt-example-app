@@ -1,5 +1,5 @@
 export const state = () => ({
-  message: '',
+  navlinks: [],
   cart: {
     cartItems: [],
     subTotal: 0,
@@ -85,6 +85,7 @@ export const actions = {
 export const modules = {}
 
 export const getters = {
+  getNavlinks: (state) => state.navlinks,
   getProductDetails: (state) => state.productDetails,
   getCart: (state) => state.cart,
   getCartQty: (state) => state.cart.totalQty,

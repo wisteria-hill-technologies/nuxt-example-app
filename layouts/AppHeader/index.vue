@@ -7,10 +7,7 @@
       <nav class="relative">
         <div class="header text-sm font-semibold relative flex justify-between">
           <ul class="flex items-center px-4">
-            <li class="px-4">Shop</li>
-            <li class="px-4">Read</li>
-            <li class="px-4">Stories</li>
-            <li class="px-4">Search</li>
+            <li v-for="linkStr in navlinks" class="px-4">{{ linkStr }}</li>
           </ul>
           <ul class="flex items-center px-6">
             <li class="px-4">Login</li>
@@ -35,15 +32,29 @@ export default {
   components: {
     Cart,
   },
+  async asyncData({ store }) {
+    // SSR
+    const headers = { Accept: 'application/json' }
+    const results = await fetch(
+      'https://nuxt-noby-app-001.herokuapp.com/api/navlinks',
+      { headers }
+    )
+    const data = await results.json()
+    store.state.navlinks = data.navlinks
+  },
   data() {
     return {
       isCartOpen: false,
+      navlinks: [],
     }
   },
   computed: {
     cartQty() {
       return this.$store.getters.getCartQty
     },
+  },
+  created() {
+    this.navlinks = this.$store.getters.getNavlinks
   },
   mounted() {
     this.isCartOpen = this.$store.getters.isCartOpen
@@ -52,6 +63,7 @@ export default {
   updated() {
     this.isCartOpen = this.$store.getters.isCartOpen
     this.cartQty = this.$store.getters.getCartQty
+    this.navlinks = this.$store.getters.getNavlinks
   },
   methods: {
     openCart() {
