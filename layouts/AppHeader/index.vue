@@ -14,7 +14,9 @@
           </ul>
           <ul class="flex items-center px-6">
             <li class="px-4">Login</li>
-            <li class="px-4" @click="openCart" role="button">Cart</li>
+            <li class="px-4" role="button" @click="openCart">
+              Cart {{ cartQty > 0 ? cartQty : '' }}
+            </li>
           </ul>
         </div>
         <a class="NavLogo text-3xl absolute lg:top-48 top-32" href="/"
@@ -38,6 +40,19 @@ export default {
       isCartOpen: false,
     }
   },
+  computed: {
+    cartQty() {
+      return this.$store.getters.getCartQty
+    },
+  },
+  mounted() {
+    this.isCartOpen = this.$store.getters.isCartOpen
+    this.cartQty = this.$store.getters.getCartQty
+  },
+  updated() {
+    this.isCartOpen = this.$store.getters.isCartOpen
+    this.cartQty = this.$store.getters.getCartQty
+  },
   methods: {
     openCart() {
       this.isCartOpen = !this.isCartOpen
@@ -46,27 +61,23 @@ export default {
     closeCart() {
       this.isCartOpen = false
       this.$store.commit('openCart', false)
-    }
-  },
-  mounted() {
-    this.isCartOpen = this.$store.getters.isCartOpen
-  },
-  updated() {
-    this.isCartOpen = this.$store.getters.isCartOpen
+    },
   },
 }
 </script>
 
 <style>
-.slide-enter, .slide-leave-to {
+.slide-enter,
+.slide-leave-to {
   transform: translateY(-100%);
   visibility: hidden;
-
 }
-.slider-enter-active, .slider-leave-active {
+.slider-enter-active,
+.slider-leave-active {
   transition: all 1s ease;
 }
-.slide-enter-to, .slide-leave {
+.slide-enter-to,
+.slide-leave {
   transform: none;
   visibility: visible;
 }

@@ -1,141 +1,144 @@
 <template>
   <div class="cart bg-themeDark">
-    <button v-on:click="closeCart">
-      <CrossIcon />
-    </button>
-    <div class="CartProducts">
-      <div class="CartProductsHeader flex">
-        <h1>{{JSON.stringify(cart, null, 4)}}</h1>
-        <div class="titleLabel">Cart</div>
-        <div class="sizeLabel">Size</div>
-        <div class="quantityLabel">Quantity</div>
-        <button aria-label="Close" class="closeBtn">x</button>
-      </div>
-      <ul class="CartProductsList">
-        <li class="CartProductsList-item">
-          <div
-            class="CartProduct flex"
-          >
-            <div class="CartProduct-nameWrapper">
-              <a
-                data-test-ref="CARTPRODUCT_NAME"
-                class="CartProduct-name"
-                href="https://www.aesop.com/uk/p/skin/cleanse/in-two-minds-facial-cleanser/"
-                >In Two Minds Facial Cleanser</a
-              >
-              <div class="CartProduct-size">
-                <span>100 mL </span>
-              </div>
+    <div v-if="cart.cartItems.length > 0">
+      <div class="CartProducts">
+        <div class="table px-3.5 py-7.5">
+          <div class="CartProductsHeader tableRow text-cartGray font-semibold flex align-baseline">
+            <div class="tableCol border-b-1 border-opacity-20 border-gray-100 pb-4">
+              Cart
             </div>
-            <div class="CartProduct-quantity">
-              <button class="CartProductQuantity CartProductQuantity--closed">
-                <span class="CartProductQuantity-amount">2</span
-                ><svg
-                  aria-labelledby="4b2fee8a-7162-4f36-981d-298630a42110"
-                  class="Icon CartProductQuantity-icon"
-                  role="img"
-                  viewBox="0 0 50 50"
-                >
-                  <title id="4b2fee8a-7162-4f36-981d-298630a42110">
-                    Change quantity
-                  </title>
-                  <g>
-                    <polygon
-                      points="25,31.3 4.2,10.5 0.1,14.6 25,39.5 50,14.6 45.9,10.5 "
-                    ></polygon>
-                  </g>
-                </svg>
+            <div  class="tableCol border-b-1 border-opacity-20 border-gray-100 pb-4">Size</div>
+            <div  class="tableCol border-b-1 border-opacity-20 border-gray-100 pb-4">Quantity</div>
+            <div  class="tableCol border-b-1 border-opacity-20 border-gray-100 pb-4" align="end">
+              <button v-on:click="closeCart">
+                <CrossIcon />
               </button>
             </div>
-            <div class="CartProduct-remove">
-              <button class="CartProduct-removeBtn">Remove</button>
-            </div>
-            <div class="CartProduct-total">
-              <span>£46.00</span>
-            </div>
           </div>
-        </li>
-      </ul>
-    </div>
-    <div class="CartSummary">
-      <div class="CartSummary-wrapper">
-        <div class="CartSummary-notice m-2 border-1">
-          <div class="CartSummary-noticeItem">
-            Complimentary express delivery on all orders above £90.
-          </div>
-          <div class="CartSummary-noticeItem">
-            Shipping to the United Kingdom.
+          <div class="tableRow" v-for="item in cart.cartItems">
+            <div class="tableCol border-b-1 border-opacity-20 border-gray-100 py-6">
+              <a
+                class="CartProduct-name"
+                href="https://www.aesop.com/uk/p/skin/cleanse/in-two-minds-facial-cleanser/"
+              >{{item.title}}</a
+              >
+            </div>
+            <div  class="tableCol border-b-1 border-opacity-20 border-gray-100 py-6">
+              {{item.size}}
+            </div>
+            <div  class="tableCol border-b-1 border-opacity-20 border-gray-100 py-6 text-white active:text-black">
+              <select @change="handleSelectQty" class="bg-transparent active:bg-theme text-white active:text-black">
+                <option class="text-darkTheme" :selected="item.qty===option" v-for="option in item.options" :value="`${item.sku}-${option}-${item.price}`">{{option}}</option>
+              </select>
+              <button
+                class="text-sm mx-3 px-3 text-themeDark hover:text-white transition-colors duration-300"
+                v-on:click="removeSkuFromCart(item.sku)"
+              >
+                Remove
+              </button>
+            </div>
+            <div  class="tableCol border-b-1 border-opacity-20 border-gray-100 py-6" align="end">
+              £{{item.qty * item.price}}
+            </div>
           </div>
         </div>
-        <div class="m-2 border-1">
-          <div class="CartSummary-promo">
-            <button
-              aria-label="Apply a promotional code"
-              class="CartSummary-promoBtn"
-              type="button"
-            >
-              <div class="flex">
-                <h5>Apply a promotional code</h5>
-                <div>+</div>
+      </div>
+      <div class="CartSummary">
+        <div class="CartSummaryWrapper flex flex-wrap justify-between px-10 pb-7.5">
+          <div class="CartSummaryLeft w-full md:w-1/3 flex items-end m-2">
+            <div class="md:mb-14 text-xs md:text-sm text-cartGray">
+              <div class="mb-3.5">
+                Complimentary express delivery on all orders above £90.
               </div>
-            </button>
-          </div>
-          <div
-            class="OfferMessage"
-          >
-            <span>Enjoy complimentary shipping on all orders.</span>
-          </div>
-          <div class="CartSummary-item CartSummary-item--noBorder">
-            <h5 class="CartSummary-itemLabel">Subtotal (Tax Incl.)</h5>
-            <div class="CartSummary-itemAmount CartSummary-subtotalAmount">
-              <span>£46.00</span>
+              <div>
+                Shipping to the United Kingdom.
+              </div>
             </div>
           </div>
-          <div class="CartSummary-checkoutBtnWrapper">
-            <button
-              class="Btn Btn--large CartSummary-checkoutBtn"
-              type="button"
-            >
-              <div class="Btn-content">
-                <span class="Btn-label">Checkout</span>
-              </div>
-            </button>
-            <div class="ProviderDisclaimer-wrapper">
-              <ul
-                class="CompanyLogos-list CartSummary-noticeItem"
-                data-test-ref="CART_PAYMENT_ICONS"
+          <div class="CartSummaryRight w-full lg:w-1/3 md:w-1/2 m-2">
+            <div class="CartSummary-promo text-xs md:text-sm pb-6 border-b-1 border-opacity-20 border-gray-100">
+              <button
+                aria-label="Apply a promotional code"
+                type="button"
+                class="w-full"
               >
-                <li class="CompanyLogos-listItem">logo</li>
-                <li class="CompanyLogos-listItem">logo</li>
-                <li class="CompanyLogos-listItem">logo</li>
-                <li class="CompanyLogos-listItem">logo</li>
-                <li class="CompanyLogos-listItem">logo</li>
-              </ul>
+                <div class="w-full flex text-cartGray font-semibold justify-between">
+                  <div><h5>Apply a promotional code</h5></div>
+                  <div><CartPlusIcon /></div>
+                </div>
+              </button>
+            </div>
+            <div
+              class="OfferMessage text-xs md:text-sm mb-4 md:mb-0 pt-7"
+            >
+              <span class="text-cartGray">Enjoy complimentary shipping on all orders.</span>
+            </div>
+            <div class="Subtotal flex justify-between align-items-center py-6">
+              <h5 class="text-cartGray font-semibold">Subtotal (Tax Incl.)</h5>
+              <div class="text-white text-2xl">
+                <span>£{{cart.subTotal}}</span>
+              </div>
+            </div>
+            <div>
+              <button
+                class="w-full"
+                type="button"
+              >
+                <div class="bg-theme px-6 py-5 mb-5">
+                  <span class="text-sm font-semibold text-themeDark">Checkout</span>
+                </div>
+              </button>
+              <div class="ProviderDisclaimer-wrapper">
+                <ul
+                  class="CompanyLogosList flex text-sm text-cartGray"
+                >
+                  <li class="pr-4.5">VISA</li>
+                  <li class="pr-4.5"">Master Card</li>
+                  <li class="pr-4.5">PayPal</li>
+                  <li class="pr-4.5">Klarna</li>
+                  <li class="pr-4.5">Alipay</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <div v-else class="flex justify-end items-center p-5">
+      <p class="px-3">You have no items in your cart</p>
+      <button v-on:click="closeCart">
+        <CrossIcon />
+      </button></div>
   </div>
 </template>
 
 <script>
 import CrossIcon from '../../../components/common/Icons/CrossIcon'
+import CartPlusIcon from '../../../components/common/Icons/CartPlusIcon'
+
 export default {
   components: {
     CrossIcon,
+    CartPlusIcon,
   },
   methods: {
     closeCart() {
       this.$emit('closeCart');
     },
+    handleSelectQty(e) {
+      const value = e.target.value //sku-qty-price
+      this.$store.commit('updateCartSkuQty', value)
+    },
+    removeSkuFromCart(sku) {
+      this.$store.commit('removeSkuFromCart', sku)
+    }
   },
   data() {
     return {
       cart: {
         cartItems: [],
         subTotal: 0,
-      },
+      }
     }
   },
   computed: {
@@ -172,7 +175,21 @@ export default {
 .CartProducts {
   padding: 34px 34px 0;
 }
-.CartProductsHeader {
-  padding: 0 0 15px;
+
+.table {
+  display: table;
+  width: 100%;
 }
+.tableRow {
+  display: flex;
+  width: 100%;
+  clear: both;
+}
+.tableCol {
+  float: left;
+  display: table-column;
+  width: 25%;
+  box-sizing: border-box;
+}
+
 </style>

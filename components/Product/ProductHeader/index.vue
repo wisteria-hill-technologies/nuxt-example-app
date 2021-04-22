@@ -27,7 +27,8 @@ export default {
       selectedSku: {
         sku: 'abc100ml',
         size: '100mL',
-        price: '10',
+        price: '23',
+        title: 'In Two Minds Facial Cleanser',
         picture: {
           srcsets: [
             'https://www.aesop.com/medias/Aesop-Skin-In-Two-Minds-Facial-Cleanser-100mL-Large-835x962px.png?context=bWFzdGVyfGltYWdlc3wxMDM3Mjh8aW1hZ2UvcG5nfGltYWdlcy9oYzAvaGE4LzkxNDczNDMwMTE4NzAucG5nfDVmMGI4ZjNjZmIxN2EyOTAyNDg1NzgwNWFlNTI0ZjUxNmIwOWVlYTE4ZTcwZTM4ZTIwOTU3NGEzMWIyYThkMmY 2x',
@@ -47,6 +48,7 @@ export default {
           sku: 'abc100ml',
           size: '100mL',
           price: '23',
+          title: 'In Two Minds Facial Cleanser',
           picture: {
             srcsets: [
               'https://www.aesop.com/medias/Aesop-Skin-In-Two-Minds-Facial-Cleanser-100mL-Large-835x962px.png?context=bWFzdGVyfGltYWdlc3wxMDM3Mjh8aW1hZ2UvcG5nfGltYWdlcy9oYzAvaGE4LzkxNDczNDMwMTE4NzAucG5nfDVmMGI4ZjNjZmIxN2EyOTAyNDg1NzgwNWFlNTI0ZjUxNmIwOWVlYTE4ZTcwZTM4ZTIwOTU3NGEzMWIyYThkMmY 2x',
@@ -62,6 +64,7 @@ export default {
           sku: 'abc200ml',
           size: '200mL',
           price: '35',
+          title: 'In Two Minds Facial Cleanser',
           picture: {
             srcsets: [
               'https://www.aesop.com/medias/Aesop-Skin-In-Two-Minds-Facial-Cleanser-200mL-Large-835x962px.png?context=bWFzdGVyfGltYWdlc3wxNDMwODl8aW1hZ2UvcG5nfGltYWdlcy9oMTAvaGIxLzkxNDczNDM1MDMzOTAucG5nfDUzNDdiMGFhN2I2ZWU5NTliYmI3YjU3ZWExYzk5YWFlNmQ5MWI1ZTU5MTkzNDczNmYwODkyOGJiZmQwMDAzMjk 2x',
