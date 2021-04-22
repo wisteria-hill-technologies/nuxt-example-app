@@ -38,7 +38,7 @@ Functionalities replicated:
 
 ### Content and Data Flow
 - Data flow and statemanagement is done via components event emit as well as vuex between distant components.
-- Product data and navbar link (texts) are fetched via simple api endpoints created. (See the server-middleware folder)
+- Product data and navbar link (texts) are fetched via simple api endpoints created, and prepared as a static data on the server side before rendering. (See the server-middleware folder)
 
 ### Some Thoughts
 I have used react for some years (I love it), and haven't used vue.js before. But, it was very interesting to try vue.js and I think I learned a lot in a few days during which I built this.
