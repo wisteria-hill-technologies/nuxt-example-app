@@ -12,7 +12,7 @@
           <ul class="flex items-center px-6">
             <li class="px-4">Login</li>
             <li class="px-4" role="button" @click="openCart">
-              Cart {{ cartQty > 0 ? cartQty : '' }}
+              Cart {{ totalQty > 0 ? totalQty : '' }}
             </li>
           </ul>
         </div>
@@ -32,25 +32,17 @@ export default {
   components: {
     Cart,
   },
-  async asyncData({ store }) {
-    // SSR
-    const headers = { Accept: 'application/json' }
-    const results = await fetch(
-      'https://nuxt-noby-app-001.herokuapp.com/api/navlinks',
-      { headers }
-    )
-    const data = await results.json()
-    store.state.navlinks = data.navlinks
-  },
   data() {
     return {
       isCartOpen: false,
-      navlinks: [],
     }
   },
   computed: {
-    cartQty() {
+    totalQty() {
       return this.$store.getters.getCartQty
+    },
+    navLinks() {
+      return this.$store.getters.getNavlinks
     },
   },
   created() {
@@ -59,6 +51,7 @@ export default {
   mounted() {
     this.isCartOpen = this.$store.getters.isCartOpen
     this.cartQty = this.$store.getters.getCartQty
+    this.navlinks = this.$store.getters.getNavlinks
   },
   updated() {
     this.isCartOpen = this.$store.getters.isCartOpen

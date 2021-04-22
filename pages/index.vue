@@ -94,6 +94,13 @@ export default {
     const results = await fetch(`https://nuxt-noby-app-001.herokuapp.com/api/productDetails?=${payload}`, { headers })
     const data = await results.json()
     store.state.productDetails = data
+
+    const navResults = await fetch(
+      'https://nuxt-noby-app-001.herokuapp.com/api/navlinks',
+      { headers }
+    )
+    const navLinkData = await navResults.json()
+    store.state.navlinks = navLinkData.navlinks
   },
   updated() {
     this.productDetails = this.$store.getters.getProductDetails

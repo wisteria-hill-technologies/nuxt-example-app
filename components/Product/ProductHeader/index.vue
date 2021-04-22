@@ -10,7 +10,7 @@
     />
     <ProductInfo
       :adding-to-cart="addingToCart"
-      :title="title"
+      :title="productDetails.title"
       :description="productDetails.description"
       :selected-sku="selectedSku"
       :products="productDetails.products"

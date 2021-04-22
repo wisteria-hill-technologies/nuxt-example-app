@@ -1,5 +1,8 @@
 # nuxt-example-app
 
+
+
+## Build Setup
 # Deploy to Heroku
 Deployment process to Heroku:
 
@@ -11,7 +14,7 @@ Deployment process to Heroku:
 
 
 
-## Build Setup
+
 
 ```bash
 # install dependencies
