@@ -4,8 +4,8 @@
       <transition name="slide">
         <Cart v-if="isCartOpen" @closeCart="closeCart" />
       </transition>
-      <nav class="relative">
-        <div class="header text-sm font-semibold relative flex justify-between">
+      <nav class="relative overflow-hidden">
+        <div class="header text-sm font-semibold relative flex flex-wrap justify-between">
           <ul class="flex items-center px-4">
             <li v-for="linkStr in navlinks" class="px-4">{{ linkStr }}</li>
           </ul>
