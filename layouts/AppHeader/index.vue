@@ -4,7 +4,7 @@
       <transition name="slide">
         <Cart v-if="isCartOpen" @closeCart="closeCart" />
       </transition>
-      <nav class="relative overflow-hidden">
+      <nav class="relative">
         <div class="header text-sm font-semibold relative flex flex-wrap justify-between">
           <ul class="flex items-center px-4">
             <li v-for="linkStr in navlinks" class="px-4">{{ linkStr }}</li>
@@ -16,9 +16,9 @@
             </li>
           </ul>
         </div>
-        <a class="NavLogo text-3xl absolute lg:top-48 top-32" href="/"
-          ><Logo
-        /></a>
+        <a class="NavLogo text-3xl absolute lg:top-48 top-28" href="/">
+          <Logo />
+        </a>
       </nav>
     </div>
   </div>

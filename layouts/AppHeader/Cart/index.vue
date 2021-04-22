@@ -27,7 +27,7 @@
               {{item.size}}
             </div>
             <div  class="tableCol border-b-1 border-opacity-20 border-gray-100 py-6 text-white active:text-black">
-              <select @change="handleSelectQty" class="bg-transparent active:bg-theme text-white active:text-black">
+              <select @change="handleSelectQty" class="bg-transparent active:bg-theme text-white active:text-black w-16 py-1 p-3">
                 <option class="text-darkTheme" :selected="item.qty===option" v-for="option in item.options" :value="`${item.sku}-${option}-${item.price}`">{{option}}</option>
               </select>
               <button
