@@ -6,6 +6,7 @@ export const state = () => ({
     totalQty: 0,
     isCartOpen: false,
   },
+  productDetails: null,
 })
 const addOptionsToItem = (item) => {
   const range = 4
@@ -20,8 +21,8 @@ export const mutations = {
   openCart(state, payload) {
     state.cart.isCartOpen = payload
   },
-  getMessage(state, payload) {
-    state.message = payload
+  getProductDetails(state, payload) {
+    state.productDetails = payload
   },
   removeSkuFromCart(state, selectedSku) {
     const prevCartItems = JSON.parse(JSON.stringify(state.cart.cartItems))
@@ -73,18 +74,18 @@ export const mutations = {
 
 export const actions = {
   // asynchronous call
-  async getMessageAsync(state) {
+  async getProductDetailsAsync(state, payload) {
     const headers = { Accept: 'application/json' }
-    const results = await fetch('/api/ping', { headers })
+    const results = await fetch(`/api/productDetails?=${payload}`, { headers })
     const data = await results.json()
-    state.commit('getMessage', data.message)
+    state.commit('getProductDetails', data)
   },
 }
 
 export const modules = {}
 
 export const getters = {
-  getMessage: (state) => state.message,
+  getProductDetails: (state) => state.productDetails,
   getCart: (state) => state.cart,
   getCartQty: (state) => state.cart.totalQty,
   isCartOpen: (state) => state.cart.isCartOpen,

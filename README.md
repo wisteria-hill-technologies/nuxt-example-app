@@ -1,5 +1,15 @@
 # nuxt-example-app
 
+# Deploy to Heroku
+Deployment process to Heroku:
+
+`https://nuxtjs.org/docs/2.x/deployment/heroku-deployment`
+
+
+
+
+
+
 ## Build Setup
 
 ```bash

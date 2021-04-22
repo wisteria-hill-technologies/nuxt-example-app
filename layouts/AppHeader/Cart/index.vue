@@ -141,14 +141,7 @@ export default {
       }
     }
   },
-  computed: {
-    message() {
-      return this.$store.getters.getMessage
-    },
-  },
   mounted() {
-    // this.$store.dispatch('getMessageAsync')
-    // this.$store.commit('getMessage', 'YO!')
     this.cart = this.$store.getters.getCart
   },
   updated() {

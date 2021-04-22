@@ -23,15 +23,14 @@
     />
     <div>
       <button class="border px-5 py-4 bg-dark text-white w-full" type="submit">
-        <div>
-          <span class="Btn-label text-sm"> Add to your cart — £{{selectedSku.price}}</span>
-          <span class="Btn-label text-sm">Added to your cart</span>
-          <span class="LoadingIndicator LoadingIndicator--light">
-            <span class="LoadingIndicator-dot"></span>
-            <span class="LoadingIndicator-dot"></span>
-            <span class="LoadingIndicator-dot"></span>
+        <transition name="fade">
+          <span v-if="!addingToCart" class="Btn-label text-sm">
+            Add to your cart — £{{ selectedSku.price }}
           </span>
-        </div>
+          <span v-else class="Btn-label text-sm">
+            Added to your cart
+          </span>
+        </transition>
       </button>
     </div>
   </div>
@@ -45,6 +44,7 @@ export default {
     ProductDetails,
   },
   props: {
+    addingToCart: Boolean,
     title: String,
     description: String,
     selectedSku: Object,
@@ -60,6 +60,19 @@ export default {
 </script>
 
 <style scoped>
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s ease;
+}
+.fade-enter-to,
+.fade-leave {
+  opacity: 1;
+}
+
 .productInfoWrapper {
   max-width: 550px;
 }

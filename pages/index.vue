@@ -45,8 +45,13 @@
       </button>
     </div>
     <ProductHeader
+      v-if="productDetails"
+      :product-details="productDetails"
       @openSidePanel="overlayVisible = !overlayVisible"
     />
+    <div v-else class="w-full h-screen flex justify-center items-center text-center">
+      <p class="">Loading Products...</p>
+    </div>
     <SecondaryMessageSection />
     <ProductContentSection />
     <ProductCarouselSection />
@@ -70,6 +75,17 @@ export default {
     return {
       overlayVisible: false,
     }
+  },
+  computed: {
+    productDetails() {
+      return this.$store.getters.getProductDetails
+    },
+  },
+  mounted() {
+    this.$store.dispatch('getProductDetailsAsync', 'abc100ml')
+  },
+  updated() {
+    this.productDetails = this.$store.getters.getProductDetails
   },
 }
 </script>
