@@ -27,8 +27,7 @@ https://nuxt-noby-app-001.herokuapp.com/
 4. yarn build for building the app for deployment
 5. yarn start to run the build app.
 
-### Notes
-#### UI
+### UI
 Functionalities replicated:
 - Product Size switcher/selector
 - Shopping Cart - add/remove from cart, change quantity
@@ -37,16 +36,16 @@ Functionalities replicated:
 - Basic responsiveness of the page
 - Simplified version and slider of accompaniments section
 
-#### Content and Data Flow
+### Content and Data Flow
 - Data flow and statemanagement is done via components event emit as well as vuex between distant components.
 - Product data and navbar link (texts) are fetched via simple api endpoints created. (See the server-middleware folder)
+
+### Some Thoughts
+I have used react for some years (I love it), and haven't used vue.js before. But, it was very interesting to try vue.js and I think I learned a lot in a few days during which I built this.
+I am starting to like nuxt.js and vue.js a lot for ease of use.
 
 notes:
 
 - No animation or styling libraries were used except for Tailwind
 - No footer or hamburger icon was added due to time constraints.
 - Some animations were added as examples.
-
-### Some Thoughts
-I have used react for some years (I love it), and haven't used vue.js before. But, it was very interesting to try vue.js and I think I learned a lot in a few days during which I built this.
-I am starting to like nuxt.js and vue.js a lot for ease of use.
