@@ -1,5 +1,5 @@
 <template>
-  <div class="productInfoWrapper flex flex-col justify-end px-20">
+  <div class="productInfoWrapper flex flex-col justify-end sm:px-20 px-5 sm:max-w-2xl mb-14">
     <div class="productCommonSummary pb-4">
       <nav class="Breadcrumbs mb-6 ml-0.5">
         <ul class="flex text-sm">
@@ -73,7 +73,4 @@ export default {
   opacity: 1;
 }
 
-.productInfoWrapper {
-  max-width: 550px;
-}
 </style>

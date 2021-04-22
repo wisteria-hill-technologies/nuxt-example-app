@@ -1,6 +1,6 @@
 <template>
   <form
-    class="ProductHeader flex flex-wrap justify-center"
+    class="ProductHeader flex flex-wrap justify-center pt-5 sm:pt-28 sm:px-10 sm:pb-24"
     @submit.prevent="handleSubmit"
   >
     <ProductImage
@@ -58,7 +58,6 @@ export default {
 <style scoped>
 .ProductHeader {
   min-height: 90vh;
-  padding: 115px 40px 100px;
   position: relative;
 }
 </style>

@@ -1,7 +1,8 @@
 <template>
-  <section class="ProductCarouselSection py-37">
+  <section class="ProductCarouselSection sm:py-37 py-20">
     <div>
       <div>
+        <CarouselDescription v-if="isMobile" class="pb-20" :title="accompaniments.title" :description="accompaniments.description" />
         <div class="relative">
           <button
             v-if="showScrollButtons && scrollWidthPos"
@@ -14,25 +15,8 @@
           </button>
           <div ref="slider" class="slider overflow-auto">
             <div class="flex">
-              <div
-                class="outline-none flex-grow"
-                style="flex-basis: 0"
-                aria-hidden="false"
-              >
-                <div class="mx-16">
-                  <div class="CarouselIntroduction">
-                    <header>
-                      <h2 class="text-3xl font-cursive mb-2.5">
-                        {{ accompaniments.title }}
-                      </h2>
-                    </header>
-                    <p class="text-sm">
-                      {{ accompaniments.description }}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <template v-for="(product, index) in accompaniments.products">
+              <CarouselDescription v-if="!isMobile" :title="accompaniments.title" :description="accompaniments.description" />
+              <template v-for="product in accompaniments.products">
                 <div
                   class="outline-none flex items-end"
                   style="flex-basis: 0"
@@ -50,7 +34,7 @@
                       />
                       <source
                         media="(min-width: 0px)"
-                        :srcset="product.picture.srcsets[2]"
+                        :srcset="product.picture.srcsets[1]"
                       />
                       <img
                         class="productImage m-auto"
@@ -88,13 +72,16 @@
 
 <script>
 import ArrowIcon from './ArrowIcon'
+import CarouselDescription from './CarouselDescription'
 
 export default {
   components: {
     ArrowIcon,
+    CarouselDescription
   },
   data() {
     return {
+      isMobile: false,
       scrollWidthPos: 0,
       showScrollButtons: false,
       scrollLeft: 0,
@@ -180,6 +167,11 @@ export default {
   },
   methods: {
     handleResize() {
+      if (window.innerWidth <= 570) {
+        this.isMobile = true
+      } else {
+        this.isMobile = false
+      }
       this.showScrollButtons =
         this.scrollWidthPos > 0 ||
         window.innerWidth < this.$refs.slider.scrollWidth

@@ -1,7 +1,7 @@
 <template>
   <div class="cart bg-themeDark">
     <div v-if="cart.cartItems.length > 0">
-      <div class="CartProducts">
+      <div class="CartProducts sm:pt-8 sm:px-8 px-2">
         <div class="table px-3.5 py-7.5">
           <div class="CartProductsHeader tableRow text-cartGray font-semibold flex align-baseline">
             <div class="tableCol border-b-1 border-opacity-20 border-gray-100 pb-4">
@@ -44,7 +44,7 @@
         </div>
       </div>
       <div class="CartSummary">
-        <div class="CartSummaryWrapper flex flex-wrap justify-between px-10 pb-7.5">
+        <div class="CartSummaryWrapper flex flex-wrap justify-between sm:px-10 pl-2 px-5 pb-7.5">
           <div class="CartSummaryLeft w-full md:w-1/3 flex items-end m-2">
             <div class="md:mb-14 text-xs md:text-sm text-cartGray">
               <div class="mb-3.5">
@@ -92,7 +92,7 @@
                 <ul
                   class="CompanyLogosList flex text-sm text-cartGray"
                 >
-                  <li class="pr-4.5">VISA</li>
+                  <li class="pl-2 pr-4.5">VISA</li>
                   <li class="pr-4.5"">Master Card</li>
                   <li class="pr-4.5">PayPal</li>
                   <li class="pr-4.5">Klarna</li>
@@ -164,9 +164,6 @@ export default {
   transition: transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
   width: calc(100vw + 40px);
   z-index: 1300;
-}
-.CartProducts {
-  padding: 34px 34px 0;
 }
 
 .table {
